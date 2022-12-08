@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% comment %} {% block title %}Student Marksheet{% endblock %} {% endcomment %}
+{% block content %} 
+
+<div class="row d-flex justify-content-center mt-4">
+    <div class="col-sm-6">
+        <h4 class="text-center alert alert-info">What Do You Want Student Marksheet So Please Login</h4>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="text-center alert alert-danger">
+            {{message}}
+            </div>
+            {% endfor %}
+        {% endif %}
+    
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div>
+            <input type="number" name="sm_stud_roll" class="form-control mb-2" placeholder="Student Roll" required>
+            </div>
+            <div>
+            <input type="date" name="sm_dob" class="form-control mb-2" placeholder="Student DOB" id="" required>
+            </div>
+            <button type="submit" class="btn btn-warning">Result</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}

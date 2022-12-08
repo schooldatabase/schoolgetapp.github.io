@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="row d-flex justify-content-center mt-2">
+  <div class="col-sm-6 ">
+    {% if messages %}
+         {% for message in messages %}
+            <div class="text-center alert alert-info">
+                 {{message}}
+            </div>
+          {% endfor %}
+      {% endif %}
+</div>
+</div>
+
+<div class="row d-flex justify-content-center mt-3">
+  <div class="col-sm-6">
+    {% for show in show %}
+      <h4 class="text-center  shadow alert alert-info"><b>{{show.sm_name|capfirst}} download Marksheet </b></h4>
+    {% endfor %}
+{% if show %}
+
+<table class="table table-bordered shadow table-sm table-hover table-success">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Roll_NO</th>
+      <th scope="col">Name</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Father name</th>
+      <th scope="col">Mother name</th>
+      <th scope="col">Hindi</th>
+      <th scope="col">English</th>
+      <th scope="col">Math</th>
+      <th scope="col">Science</th>
+      <th scope="col">Social science</th>
+      <th scope="col">sanskarat</th>
+      <th scope="col">Total</th>
+      <th scope="col">Percentage</th>
+      <th scope="col">Division</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+ {% for show in show %}
+
+    <td>{{show.sm_stud_roll}}</td>
+    <td>{{show.sm_name}}</td>
+    <td>{{show.sm_dob}}</td>
+    <td>{{show.sm_father_name}}</td>
+    <td>{{show.sm_mother_name}}</td>
+    <td>{{show.subject_1}}</td>
+    <td>{{show.subject_2}}</td>
+    <td>{{show.subject_3}}</td>
+    <td>{{show.subject_4}}</td>
+    <td>{{show.subject_5}}</td>
+    <td>{{show.subject_6}}</td>
+    <td>{{total}}</td>
+    <td>{{per|floatformat:"2"}}</td>
+    <td>{{div}}</td>
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<h4 class="text-center alert alert-warning">NO Records</h4>
+{% endif %}
+</div>
+</div>
+
+
+{% endblock content %}
+
+

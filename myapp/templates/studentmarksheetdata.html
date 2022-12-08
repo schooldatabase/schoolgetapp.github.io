@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% comment %} {% block title %}Home{% endblock title %} {% endcomment %}
+{% block content %}
+<div class="row d-flex justify-content-center mt-2">
+    <div class="col-sm-6">
+        <h4 class="text-center alert alert-info">Student Marksheet Profile Database Management</h4>
+    </div>
+</div>
+
+
+<div class="row d-flex justify-content-center mt-2">
+    <div class="col-sm-6 ">
+        <a href="{% url 'studenttable' %}" class="btn btn-warning    mb-2 p-2">Student Marksheet Show Data</a>
+      {% if messages %}
+           {% for message in messages %}
+              <div class="text-center alert alert-info">
+                   {{message}}
+              </div>
+            {% endfor %}
+        {% endif %}
+
+        <h4 class="text-center alert alert-info">Add New Student Marksheet</h4>
+      <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        {% comment %} <input type="number" name="" class="form-control" value="{{total}}" id="">
+        <input type="number" name="" class="form-control" value="{{per}}" id=""> {% endcomment %}
+        <input type="submit" class="btn btn-success mb-5" value="Add">
+        <a href="{% url 'studenttable' %}" class="btn btn-success mb-5 p-2">Student Marksheet Show Data</a>
+        {% comment %} <div class="mt-3">
+            <label for="Total" class="form-label">Total Subject Marks</label>
+            <input type="number" value="{{total}}" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="Persentage" class="form-label">Total Persentage</label>
+            <input type="number" value="{{per}}" class="form-control"> {% endcomment %}
+      </form>
+    </div>
+</div>
+
+{% endblock content %} 

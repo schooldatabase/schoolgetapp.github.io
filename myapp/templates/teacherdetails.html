@@ -1,0 +1,107 @@
+
+{% extends 'base.html' %}
+{% comment %} {% block title %}Home{% endblock title %} {% endcomment %}
+{% block content %}
+<div class="row d-flex justify-content-center mt-2">
+    <div class="col-sm-11">
+        <h4 class="text-center alert alert-info">Teacher Profile Database Management</h4>
+    </div>
+</div>
+
+<div class="row d-flex justify-content-center mt-2">
+    <div class="col-sm-6">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="text-center alert alert-info">
+        {{message}}
+        </div>
+        {% endfor %}
+    {% endif %}
+
+        <h4 class="text-center alert alert-info">Add New Teacher</h4>
+      <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-success" value="Add">
+      </form>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center mt-2">
+    <div class="col-sm-6">
+        <h4 class="text-center alert alert-info">Search of The Teacher Data.</h4>
+        <form action="" method="get">
+          <input type="text" name="searchnamebox" class="form-control d-inline" value="">
+          <input type="submit" class="btn btn-success m-2" value="Search">
+        </form>
+        
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center mt-2">
+    <div class="col-sm-8">
+        <h4 class="text-center alert alert-info">Show Teacher INformation</h4>
+       {% if tstu %}
+       <table class="table table-bordered table-sm table-hover table-success">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Date</th>
+            <th scope="col">Father Name</th>
+            <th scope="col">Mother Name</th>
+            <th scope="col">Stud Class</th>
+            <th scope="col">Phone No</th>
+            <th scope="col">Attendance_date</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Gender</th>
+            <th scope="col">salary</th>
+            <th scope="col">Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            
+            {% for st in tstu %}
+            <th scope="row">{{st.id}}</th>
+            <td>{{st.only_user_name}}</td>
+            <td>{{st.name}}</td>
+            <td>{{st.dob}}</td>
+            <td>{{st.date}}</td>
+            <td>{{st.father_name}}</td>
+            <td>{{st.mother_name}}</td>
+            <td>{{st.stud_class}}</td>
+            <td>{{st.Phone_no}}</td>
+            <td>{{st.attendance_date}}</td>
+            <td>{{st.subject_name}}</td>
+            <td>{{st.gender}}</td>
+            <td>{{st.salary}}</td>
+            <td>{{st.address}}</td>
+            <td>
+              <a href="{% url 'teacherupdatedata' st.id %}" class="btn btn-warning d-inline btn-sm">Edit</a>
+              <form action="{% url 'teacherdeletedata' st.id %}" method='POST' class="d-inline">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger d-inline" value="Delete">
+              </form>
+              
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+       {% else %}
+       <h4 class="text-center alert alert-warning">NO Records</h4>
+       {% endif %}
+        </form>
+    </div>
+</div>
+
+
+
+
+
+    
+    </div>
+</div>
+
+{% endblock content %}

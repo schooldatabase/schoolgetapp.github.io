@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% comment %} {% block title %}Home{% endblock title %} {% endcomment %}
+{% block content %}
+   
+
+<div class="alert-danger">
+
+    <a href="{% url 'logout' %}">logout</a>
+</div>
+
+{% comment %} {% else %}
+no user found
+{% endif %} {% endcomment %}
+</form> 
+
+
+
+{% endblock content %}

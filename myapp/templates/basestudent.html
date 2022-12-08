@@ -1,0 +1,9 @@
+
+{% extends 'base.html' %}
+{% comment %} {% block title %}Home{% endblock title %} {% endcomment %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+</form>
+{% endblock %}
